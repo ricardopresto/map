@@ -1,7 +1,11 @@
 <template>
     <div>
         <div id='main'>
-            <Icon v-for="icon in iconlist" :key="icon.name" :image="icon.image"/>
+            <Icon 
+            v-for="icon in iconlist" 
+            :key="icon.index" 
+            :image="icon.image" 
+            @icon-click="$emit('icon-click', $event)"/>
         </div>    
     </div>
 </template>
@@ -26,8 +30,8 @@ export default {
 
 <style scoped>
 #main{
-    width: 200px;
-    height: 400px;
+    width: 50px;
+    height: 300px;
     margin-left: 20px;
     border: 1px solid black;
 }

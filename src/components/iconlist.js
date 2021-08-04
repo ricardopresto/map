@@ -1,23 +1,23 @@
 const iconlist = [
   {
-    name: 'star',
+    index: '0',
     image: 'star.png'
   },
   {
-    name: 'pin',
+    index: '1',
     image: 'map-pin.png'
   },
   {
-    name: 'asterisk',
+    index: '2',
     image: 'asterisk.png'
   },
   {
-    name: 'information',
+    index: '3',
     image: 'information.png'
   },
   
   {
-    name: 'marker',
+    index: '4',
     image: 'map-marker.png'
   }
 ]

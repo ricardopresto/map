@@ -1,5 +1,6 @@
 <template>
-    <div id='iconholder'>
+    <div id='iconholder'
+      @click="$emit('icon-click', image)">
       <img :src="iconimage" />
     </div>
 </template>

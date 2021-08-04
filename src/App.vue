@@ -1,8 +1,9 @@
 <template>
-  <div id="app" @click="createMarker">
+  <div id="app">
     <div id="map"></div>
     <AddIcon 
     :iconlist="iconlist"
+    @icon-click="createMarker($event)"
     />
   </div>
 </template>
@@ -40,12 +41,15 @@ export default {
         zoom: 8,
       });
     },
-    createMarker() {
-      var el = document.createElement('div');
-      el.className = 'marker';
-      var marker = new mapboxgl.Marker({element: el, draggable: true})
+    createMarker(type) {
+      let icon = document.createElement('img');
+      icon.src = this.getIconImage(type);
+      let marker = new mapboxgl.Marker({element: icon, draggable: true})
       marker.setLngLat([5.483333, 51.433333])
       marker.addTo(this.map);
+    },
+    getIconImage(type) {
+      return require(`../icons/${type}`)
     }
   },
 }
@@ -57,13 +61,8 @@ export default {
   display: flex;
 }
 #map {
-  width: 70vw;
+  width: 90vw;
   height: 90vh;
-  border: 1px solid black;
-}
-.marker{
-  width: 100px;
-  height: 20px;
   border: 1px solid black;
 }
 </style>
