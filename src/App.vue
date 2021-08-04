@@ -1,13 +1,16 @@
 <template>
   <div id="app" @click="createMarker">
-    <AddIcon />
     <div id="map"></div>
+    <AddIcon 
+    :iconlist="iconlist"
+    />
   </div>
 </template>
 
 <script>
 import mapboxgl from 'mapbox-gl';
 import AddIcon from './components/AddIcon.vue';
+import iconlist from './components/iconlist';
 
 export default {
   name: 'App',
@@ -19,6 +22,7 @@ export default {
       access_token: 'pk.eyJ1IjoicmljYXJkb3ByZXN0byIsImEiOiJja3J1bmloMHEwYnY4MnBzNWt6b2x6eHBuIn0.zivT6cbQcLcAFl1Q8GW-QA',
       center: [5.483333, 51.433333],
       map: {},
+      iconlist: iconlist
     };
   },
 
@@ -49,8 +53,11 @@ export default {
 </script>
 
 <style>
+#app{
+  display: flex;
+}
 #map {
-  width: 90vw;
+  width: 70vw;
   height: 90vh;
   border: 1px solid black;
 }
