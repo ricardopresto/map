@@ -6,17 +6,25 @@
       </div>
     </div>
     <div id="map"></div>
-    <IconBox 
-    :iconlist="iconlist"
-    @icon-click="createMarker($event)"
-    />
-    <LayerBox
-    :layers="layerlist"
-    @set-visible="setVisible($event)"
-    />
-    <AddText
-    @add-text="addTextMarker($event)"
-    />
+    <div id="controls">
+      <IconBox 
+      :iconlist="iconlist"
+      @icon-click="createMarker($event)"
+      />
+      <LayerBox
+      :layers="layerlist"
+      @set-visible="setVisible($event)"
+      />
+      <AddText
+      @add-text="addTextMarker($event)"
+      />
+      <Sizer
+      :mapWidth="mapWidth"
+      :mapHeight="mapHeight"
+      @height-change="heightChange"
+      @width-change="widthChange"
+       />
+    </div>
   </div>
 </template>
 
@@ -26,6 +34,7 @@ import html2canvas from 'html2canvas';
 import IconBox from './components/IconBox.vue';
 import LayerBox from './components/LayerBox.vue';
 import AddText from './components/AddText.vue';
+import Sizer from './components/Sizer.vue';
 import iconlist from './components/iconlist';
 import layerlist from './components/layerlist';
 
@@ -34,7 +43,8 @@ export default {
   components: {
     IconBox,
     LayerBox,
-    AddText
+    AddText,
+    Sizer
   },
   data() {
     return {
@@ -44,7 +54,9 @@ export default {
       completeLayerList: [],
       iconlist: iconlist,
       layerlist: layerlist,
-      modal: false
+      modal: false,
+      mapWidth: 500,
+      mapHeight: 500
     };
   },
 
@@ -106,6 +118,14 @@ export default {
     },
     closeModal() {
       this.modal = false;
+    },
+    heightChange(newHeight) {
+      let map = document.getElementById('map')
+      map.style.height = `${newHeight}px`;
+    },
+    widthChange(newWidth) {
+      let map = document.getElementById('map')
+      map.style.width = `${newWidth}px`;
     }
   }
 }
@@ -143,5 +163,9 @@ export default {
   color: white;
   padding: 30px;
   cursor: default;
+}
+#controls{
+  display: flex;
+  flex-flow: row wrap;
 }
 </style>
