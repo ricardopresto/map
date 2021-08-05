@@ -5,7 +5,7 @@
         <span>CLOSE</span>
       </div>
     </div>
-    <div id="map"></div>
+    <div id="map" :style="mapStyle"></div>
     <div id="controls">
       <IconBox 
       :iconlist="iconlist"
@@ -55,8 +55,8 @@ export default {
       iconlist: iconlist,
       layerlist: layerlist,
       modal: false,
-      mapWidth: 500,
-      mapHeight: 500
+      mapWidth: 600,
+      mapHeight: 800
     };
   },
 
@@ -120,12 +120,18 @@ export default {
       this.modal = false;
     },
     heightChange(newHeight) {
-      let map = document.getElementById('map')
-      map.style.height = `${newHeight}px`;
+      this.mapHeight = newHeight;
     },
     widthChange(newWidth) {
-      let map = document.getElementById('map')
-      map.style.width = `${newWidth}px`;
+      this.mapWidth = newWidth;
+    }
+  },
+  computed: {
+    mapStyle () {
+      return {
+        height: `${this.mapHeight}px`,
+        width: `${this.mapWidth}px`
+      }
     }
   }
 }
@@ -140,11 +146,6 @@ export default {
 }
 #app{
   display: flex;
-}
-#map {
-  width: 70vw;
-  height: 90vh;
-  border: 1px solid black;
 }
 #modal{
   position: absolute;

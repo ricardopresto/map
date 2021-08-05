@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <input type="range" min="20" max="500" v-model="setWidth" class="slider" id="width" @change="widthChange" >
-    <input type="range" min="20" max="500" v-model="setHeight" class="slider" id="height" @change="heightChange">
+    <input type="range" min="20" max="600" v-model="setWidth" class="slider" id="width" @change="widthChange" >
+    <input type="range" min="20" max="800" v-model="setHeight" class="slider" id="height" @change="heightChange">
   </div>
 </template>
 
