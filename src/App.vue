@@ -1,5 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" @click.self="capture">
+    <div id="modal" v-if="modal">
+      <div id="closer" @click="closeModal">
+        <span>CLOSE</span>
+      </div>
+    </div>
     <div id="map"></div>
     <IconBox 
     :iconlist="iconlist"
@@ -17,6 +22,7 @@
 
 <script>
 import mapboxgl from 'mapbox-gl';
+import html2canvas from 'html2canvas';
 import IconBox from './components/IconBox.vue';
 import LayerBox from './components/LayerBox.vue';
 import AddText from './components/AddText.vue';
@@ -37,7 +43,8 @@ export default {
       map: {},
       completeLayerList: [],
       iconlist: iconlist,
-      layerlist: layerlist
+      layerlist: layerlist,
+      modal: false
     };
   },
 
@@ -53,6 +60,7 @@ export default {
         style: "mapbox://styles/mapbox/streets-v11",
         center: this.center,
         zoom: 8,
+        preserveDrawingBuffer: true
       });
       this.map.on('load', () => {
         this.completeLayerList = this.map.getStyle().layers;
@@ -87,6 +95,17 @@ export default {
             }
           }
       }
+    },
+    capture() {
+      let map = document.getElementById('map');
+      this.modal = true;
+      html2canvas(map).then(function(canvas) {
+        let modal = document.getElementById('modal');
+        modal.append(canvas);
+      });
+    },
+    closeModal() {
+      this.modal = false;
     }
   }
 }
@@ -94,6 +113,11 @@ export default {
 </script>
 
 <style>
+* {
+  margin: 0;
+  Padding: 0;
+  box-sizing: border-box;
+}
 #app{
   display: flex;
 }
@@ -101,5 +125,23 @@ export default {
   width: 70vw;
   height: 90vh;
   border: 1px solid black;
+}
+#modal{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: cornflowerblue;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+}
+#closer{
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  padding: 30px;
+  cursor: default;
 }
 </style>
