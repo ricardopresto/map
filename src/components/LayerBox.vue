@@ -1,7 +1,7 @@
 <template>
   <div id='main'>
     <Layer 
-    v-for="layer in layers"
+    v-for="layer in layerlist"
     :key="layer.index"
     :layerID="layer.id"
     :layerName="layer.name"
@@ -18,7 +18,7 @@ export default {
   components: {
     Layer
   },
-  props: ['layers'],
+  props: ['layerlist'],
 }
 </script>
 

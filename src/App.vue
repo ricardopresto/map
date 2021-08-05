@@ -6,45 +6,32 @@
       </div>
     </div>
     <div id="map" :style="mapStyle"></div>
-    <div id="controls">
-      <IconBox 
-      :iconlist="iconlist"
-      @icon-click="createMarker($event)"
-      />
-      <LayerBox
-      :layers="layerlist"
-      @set-visible="setVisible($event)"
-      />
-      <AddText
-      @add-text="addTextMarker($event)"
-      />
-      <Sizer
-      :mapWidth="mapWidth"
-      :mapHeight="mapHeight"
+    
+      <ControlPanel 
       @height-change="heightChange"
       @width-change="widthChange"
-       />
-    </div>
+      @set-visible="setVisible($event)"
+      @icon-click="createMarker($event)"
+      @add-text="addTextMarker($event)"
+      :mapWidth="mapWidth"
+      :mapHeight="mapHeight"
+      :layerlist="layerlist"
+      :iconlist="iconlist"
+      /> 
   </div>
 </template>
 
 <script>
 import mapboxgl from 'mapbox-gl';
 import html2canvas from 'html2canvas';
-import IconBox from './components/IconBox.vue';
-import LayerBox from './components/LayerBox.vue';
-import AddText from './components/AddText.vue';
-import Sizer from './components/Sizer.vue';
+import ControlPanel from './components/ControlPanel.vue'
 import iconlist from './components/iconlist';
 import layerlist from './components/layerlist';
 
 export default {
   name: 'App',
   components: {
-    IconBox,
-    LayerBox,
-    AddText,
-    Sizer
+    ControlPanel
   },
   data() {
     return {
@@ -93,7 +80,7 @@ export default {
       newTextMarker.addTo(this.map);
     },
     getIconImage(type) {
-      return require(`../icons/${type}`)
+      return require(`./assets/icons/${type}`)
     },
     setVisible(info) {
       console.log(info);
@@ -164,9 +151,5 @@ export default {
   color: white;
   padding: 30px;
   cursor: default;
-}
-#controls{
-  display: flex;
-  flex-flow: row wrap;
 }
 </style>

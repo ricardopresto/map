@@ -11,7 +11,7 @@ export default {
   props: ['image'],
   computed: {
     iconimage: function() {
-      return require(`../../icons/${this.image}`);
+      return require(`../assets/icons/${this.image}`);
     }
   },
   data() {
