@@ -1,20 +1,18 @@
 <template>
-    <div>
-        <div id='main'>
-            <Icon 
-            v-for="icon in iconlist" 
-            :key="icon.index" 
-            :image="icon.image" 
-            @icon-click="$emit('icon-click', $event)"/>
-        </div>    
-    </div>
+    <div id='main'>
+        <Icon 
+        v-for="icon in iconlist" 
+        :key="icon.index" 
+        :image="icon.image" 
+        @icon-click="$emit('icon-click', $event)"/>
+    </div>    
 </template>
 
 <script>
 
 import Icon from './Icon.vue';
 export default {
-    name: 'AddIcon',
+    name: 'IconBox',
     components: {
         Icon
     },
