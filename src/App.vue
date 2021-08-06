@@ -130,6 +130,8 @@ export default {
   margin: 0;
   Padding: 0;
   box-sizing: border-box;
+  --switcher-bg: rgb(35, 156, 231);
+  font-family: Arial, Helvetica, sans-serif;
 }
 #app{
   display: flex;

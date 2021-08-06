@@ -1,6 +1,8 @@
 <template>
-  <div id='layerbox' @click="setVisible">
+  <div id='layer' @click="setVisible">
     <span>{{ layerName }}</span>
+    <i class="far fa-eye" v-if="visible"></i>
+    <i class="far fa-eye-slash" v-if="!visible"></i>
   </div>
 </template>
 
@@ -25,9 +27,15 @@ export default {
 </script>
 
 <style scoped>
-#layerbox{
-  width: 140px;
-  height: 20px;
+#layer{
+  width: 198px;
+  height: 40px;
   border: 1px solid red;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
 }
 </style>

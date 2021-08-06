@@ -24,9 +24,9 @@ export default {
 
 <style scoped>
 #main{
-  width: 150px;
-  height: 300px;
-  margin-left: 10px;
+  width: 200px;
+  height: 200px;
+  background-color: var(--switcher-bg);
   border: 1px solid black;
 }
 </style>

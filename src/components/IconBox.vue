@@ -28,9 +28,11 @@ export default {
 
 <style scoped>
 #main{
-    width: 50px;
-    height: 300px;
-    margin-left: 20px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-flow: row wrap;
     border: 1px solid black;
+    background-color: var(--switcher-bg);
 }
 </style>

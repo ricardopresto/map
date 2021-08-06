@@ -1,7 +1,7 @@
 <template>
   <div id="main">
-    <textarea name="" id="" cols="20" rows="2" v-model="text"></textarea>
-    <button @click="buttonClick ">ADD</button>
+    <textarea cols="20" rows="2" v-model="text"></textarea>
+    <button @click="buttonClick ">Add Text</button>
   </div>
 </template>
 
@@ -25,8 +25,26 @@ export default {
 
 <style scoped>
 #main{
-  width: 150px;
+  width: 200px;
   height: 150px;
+  background-color: var(--switcher-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
   border: 1px solid black;
+}
+textarea{
+  resize: none;
+  outline: none;
+  border-radius: 6px;
+  padding: 5px;
+}
+button{
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
 }
 </style>

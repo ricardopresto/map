@@ -39,12 +39,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: slategray;
+  background-color: var(--switcher-bg);
 }
 .icon{
   width: 20px;
   height: 20px;
-  color: lightgrey;
+  color: rgb(255, 255, 255);
 }
 #icons{
   border-radius: 15 0 0 15;

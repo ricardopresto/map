@@ -28,7 +28,7 @@ export default {
 
 <style scoped>
 #main{
-  width: 150px;
+  width: 200px;
   height: 200px;
   border: 1px solid black;
 }

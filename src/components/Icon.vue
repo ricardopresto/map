@@ -24,10 +24,10 @@ export default {
 
 <style scoped>
 #iconholder{
-  border: 1px solid red;
-  width: 40px;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-position: center;
+  width: 49px;
+  height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
