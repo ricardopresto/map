@@ -1,5 +1,5 @@
 <template>
-  <div id="app" @click.self="capture">
+  <div id="app">
     <div id="modal" v-if="modal">
       <div id="closer" @click="closeModal">
         <span>CLOSE</span>
@@ -8,6 +8,7 @@
     <div id="map" :style="mapStyle"></div>
     
       <ControlPanel 
+      @capture="capture"
       @height-change="heightChange"
       @width-change="widthChange"
       @set-visible="setVisible($event)"
@@ -83,7 +84,6 @@ export default {
       return require(`./assets/icons/${type}`)
     },
     setVisible(info) {
-      console.log(info);
       for (let item of this.completeLayerList) {
           if (info[1] == false) {
             if (item.id.includes(info[0])) {
