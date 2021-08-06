@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <div id="main">
     <div id="switcher">
       <Switcher 
       @change-option="changeOption($event)"
       @capture="$emit('capture')"
       />
     </div>
-    <IconBox 
+    <div id="optionbox">
+      <IconBox 
       v-if="active == 'icons'"
       :iconlist="iconlist"
       @icon-click="$emit('icon-click', $event)"
@@ -27,6 +28,7 @@
       @height-change="$emit('height-change', $event)"
       @width-change="$emit('width-change', $event)"
        />
+    </div>
   </div>
 </template>
 
@@ -62,5 +64,17 @@ export default {
 </script>
 
 <style scoped>
-
+#main{
+  position: absolute;
+  display: flex;
+  right: 20px;
+  top: 20px;
+}
+#switcher{
+  position: relative;
+}
+#optionbox{
+  position: relative;
+  top: 30px;
+}
 </style>

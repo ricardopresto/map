@@ -25,9 +25,6 @@ export default {
 </script>
 
 <style scoped>
-*{
-  border: 1px solid red;
-}
 #main{
   width: 200px;
   height: 30px;

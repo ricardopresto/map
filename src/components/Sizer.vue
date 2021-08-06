@@ -1,7 +1,9 @@
 <template>
   <div id="main">
     <input type="range" min="20" max="600" v-model="setmapWidth" class="slider" id="width" @change="widthChange" >
-    <input type="range" min="20" max="800" v-model="setMapHeight" class="slider" id="height" @change="heightChange">
+    <span>Width: {{setmapWidth}}</span>
+    <input type="range" min="20" max="800" v-model="setMapHeight" class="slider" id="height" @change="heightChange" >
+    <span>Height: {{setMapHeight}}</span>
   </div>
 </template>
 
@@ -31,5 +33,12 @@ export default {
   width: 200px;
   height: 200px;
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--switcher-bg);
+}
+input{
+  width: 180px;
+  margin: 10px;
 }
 </style>

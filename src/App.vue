@@ -43,13 +43,15 @@ export default {
       iconlist: iconlist,
       layerlist: layerlist,
       modal: false,
-      mapWidth: 600,
-      mapHeight: 800
+      mapWidth: 0,
+      mapHeight: 0
     };
   },
 
   mounted() {
-    this.createMap()
+    this.createMap();
+    this.mapWidth = window.innerWidth;
+    this.mapHeight = window.innerHeight;
   },
 
   methods: {
@@ -64,6 +66,7 @@ export default {
       });
       this.map.on('load', () => {
         this.completeLayerList = this.map.getStyle().layers;
+        this.map.resize();
       })
     },
     createMarker(type) {
@@ -122,7 +125,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style>
