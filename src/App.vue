@@ -132,18 +132,26 @@ export default {
   margin: 0;
   Padding: 0;
   box-sizing: border-box;
-  --switcher-bg: rgb(35, 156, 231);
+  --switcher-bg: rgb(140, 176, 199);
   font-family: Arial, Helvetica, sans-serif;
 }
 #app{
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgb(175, 206, 224);
+}
+#map{
+  border: 1px solid white;
 }
 #modal{
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: cornflowerblue;
+  background-color: rgb(175, 206, 224);
   width: 100vw;
   height: 100vh;
   z-index: 3;

@@ -1,8 +1,8 @@
 <template>
   <div id="main">
-    <input type="range" min="20" max="600" v-model="setmapWidth" class="slider" id="width" @change="widthChange" >
+    <input type="range" min="20" :max="initialWidth" v-model="setmapWidth" class="slider" id="width" @change="widthChange" >
     <span>Width: {{setmapWidth}}</span>
-    <input type="range" min="20" max="800" v-model="setMapHeight" class="slider" id="height" @change="heightChange" >
+    <input type="range" min="20" :max="initialHeight" v-model="setMapHeight" class="slider" id="height" @change="heightChange" >
     <span>Height: {{setMapHeight}}</span>
   </div>
 </template>
@@ -14,8 +14,14 @@ export default {
   data() {
     return {
       setmapWidth: this.mapWidth,
-      setMapHeight: this.mapHeight
+      setMapHeight: this.mapHeight,
+      initialWidth: 0,
+      initialHeight: 0
     }
+  },
+  mounted() {
+    this.initialWidth = this.mapWidth;
+    this.initialHeight = this.mapHeight;
   },
   methods: {
     heightChange() {
