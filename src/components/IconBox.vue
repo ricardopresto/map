@@ -32,7 +32,6 @@ export default {
     height: 200px;
     display: flex;
     flex-flow: row wrap;
-    border: 1px solid black;
     background-color: var(--switcher-bg);
 }
 </style>

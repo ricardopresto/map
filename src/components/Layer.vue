@@ -30,7 +30,6 @@ export default {
 #layer{
   width: 198px;
   height: 40px;
-  border: 1px solid red;
   color: white;
   display: flex;
   flex-direction: row;

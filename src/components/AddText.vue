@@ -32,7 +32,6 @@ export default {
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  border: 1px solid black;
 }
 textarea{
   resize: none;

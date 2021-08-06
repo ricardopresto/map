@@ -36,6 +36,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 2px;
+  padding-left: 2px;
   background-color: var(--switcher-bg);
 }
 .icon{
@@ -44,6 +46,9 @@ export default {
   color: rgb(255, 255, 255);
 }
 #icons{
-  border-radius: 15 0 0 15;
+  border-radius: 6px 0 0 6px;
+}
+#render{
+  border-radius: 0 6px 6px 0;  
 }
 </style>

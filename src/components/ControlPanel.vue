@@ -69,12 +69,14 @@ export default {
   display: flex;
   right: 20px;
   top: 20px;
+  border: 1px solid white;
+  border-radius: 6px;
 }
 #switcher{
   position: relative;
 }
 #optionbox{
   position: relative;
-  top: 30px;
+  top: 29px;
 }
 </style>

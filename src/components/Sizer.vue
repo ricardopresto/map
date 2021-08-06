@@ -38,7 +38,6 @@ export default {
 #main{
   width: 200px;
   height: 200px;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   background-color: var(--switcher-bg);

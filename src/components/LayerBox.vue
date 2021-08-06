@@ -29,6 +29,5 @@ export default {
   width: 200px;
   height: 200px;
   background-color: var(--switcher-bg);
-  border: 1px solid black;
 }
 </style>
