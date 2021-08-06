@@ -42,8 +42,17 @@ export default {
   flex-direction: column;
   background-color: var(--switcher-bg);
 }
-input{
+.slider{
   width: 180px;
   margin: 10px;
+  appearance: none;
+  border-radius: 8px;
+}
+span{
+  color: white;
+  font-size: 11pt;
+  padding-left: 20px;
+  cursor: default;
+
 }
 </style>

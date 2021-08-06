@@ -56,7 +56,6 @@ export default {
   },
   methods: {
     changeOption(newOption) {
-      console.log(newOption);
       this.active = newOption;
     }
   }

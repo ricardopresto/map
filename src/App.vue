@@ -5,7 +5,7 @@
         <span>CLOSE</span>
       </div>
     </div>
-    <div id="map" :style="mapStyle"></div>
+    <div id="map" :style="mapStyle" @click="mapClick"></div>
     
       <ControlPanel 
       @capture="capture"
@@ -25,6 +25,7 @@
 <script>
 import mapboxgl from 'mapbox-gl';
 import html2canvas from 'html2canvas';
+import { v4 as uuidv4 } from 'uuid';
 import ControlPanel from './components/ControlPanel.vue'
 import iconlist from './components/iconlist';
 import layerlist from './components/layerlist';
@@ -52,6 +53,7 @@ export default {
     this.createMap();
     this.mapWidth = window.innerWidth;
     this.mapHeight = window.innerHeight;
+    console.log(uuidv4());
   },
 
   methods: {
@@ -70,21 +72,31 @@ export default {
       })
     },
     createMarker(type) {
+      let name = `marker${uuidv4()}`;
       let icon = document.createElement('img');
       icon.src = this.getIconImage(type);
-      let marker = new mapboxgl.Marker({element: icon, draggable: true});
-      marker.setLngLat(this.map.getCenter());
-      marker.addTo(this.map);
+      icon.id = name;
+      this[name] = new mapboxgl.Marker({element: icon, draggable: true});
+      this[name].setLngLat(this.map.getCenter());
+      this[name].addTo(this.map);
     },
     addTextMarker(text) {
+      let name = `marker${uuidv4()}`;
       let textMarker = document.createElement('div');
       textMarker.innerHTML = text;
-      let newTextMarker = new mapboxgl.Marker({element: textMarker, draggable: true});
-      newTextMarker.setLngLat(this.map.getCenter());
-      newTextMarker.addTo(this.map);
+      textMarker.id = name;
+      this[name] = new mapboxgl.Marker({element: textMarker, draggable: true});
+      this[name].setLngLat(this.map.getCenter());
+      this[name].addTo(this.map);
     },
     getIconImage(type) {
       return require(`./assets/icons/${type}`)
+    },
+    mapClick(event) {
+      let name = event.target.id;
+      if (name.substring(0, 6) == 'marker') {
+        this[name].remove();
+      }
     },
     setVisible(info) {
       for (let item of this.completeLayerList) {

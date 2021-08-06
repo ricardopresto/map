@@ -38,6 +38,7 @@ textarea{
   outline: none;
   border-radius: 6px;
   padding: 5px;
+  border: 1px solid white;
 }
 button{
   width: 100px;

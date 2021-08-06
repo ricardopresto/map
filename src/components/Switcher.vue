@@ -30,6 +30,7 @@ export default {
   height: 30px;
   display: flex;
   flex-direction: row;
+  background-color: var(--switcher-bg);
 }
 .option{
   width: 50px;
@@ -37,18 +38,16 @@ export default {
   align-items: center;
   justify-content: center;
   padding-top: 2px;
-  padding-left: 2px;
+  padding-left: 4px;
   background-color: var(--switcher-bg);
+  border-radius: 6px;
+}
+.option:hover{
+  box-shadow: inset 0 0 5px lightgrey;
 }
 .icon{
   width: 20px;
   height: 20px;
-  color: rgb(255, 255, 255);
-}
-#icons{
-  border-radius: 6px 0 0 6px;
-}
-#render{
-  border-radius: 0 6px 6px 0;  
+  color: white;
 }
 </style>

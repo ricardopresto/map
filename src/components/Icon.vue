@@ -1,7 +1,7 @@
 <template>
     <div id='iconholder'
       @click="$emit('icon-click', image)">
-      <img :src="iconimage" />
+      <img class="iconImage" :src="iconimage" />
     </div>
 </template>
 
@@ -29,5 +29,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.iconImage:hover{
+  transform: scale(1.05);
 }
 </style>

@@ -36,5 +36,10 @@ export default {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  border-radius: 6px;
+  cursor: default;
+}
+#layer:hover{
+  box-shadow: inset 0 0 5px lightgrey;
 }
 </style>
