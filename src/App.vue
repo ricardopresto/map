@@ -20,6 +20,7 @@
       :iconlist="iconlist"
       :windowWidth="windowWidth"
       :windowHeight="windowHeight"
+      :markerTextSize="markerTextSize"
       /> 
   </div>
 </template>
@@ -49,7 +50,8 @@ export default {
       mapWidth: 0,
       mapHeight: 0,
       windowWidth: window.innerWidth,
-      windowHeight: window.innerHeight
+      windowHeight: window.innerHeight,
+      markerTextSize: 14
     };
   },
 
@@ -83,10 +85,12 @@ export default {
       this[name].setLngLat(this.map.getCenter());
       this[name].addTo(this.map);
     },
-    addTextMarker(text) {
+    addTextMarker(textInfo) {
+      this.markerTextSize = textInfo[1];
       let name = `marker${uuidv4()}`;
       let textMarker = document.createElement('div');
-      textMarker.innerHTML = text;
+      textMarker.innerHTML = textInfo[0];
+      textMarker.style.fontSize = `${this.markerTextSize}pt`
       textMarker.id = name;
       this[name] = new mapboxgl.Marker({element: textMarker, draggable: true});
       this[name].setLngLat(this.map.getCenter());
@@ -169,7 +173,7 @@ export default {
   background-color: rgb(175, 206, 224);
   width: 100vw;
   height: 100vh;
-  z-index: 3;
+  z-index: 6;
 }
 #closer{
   position: absolute;

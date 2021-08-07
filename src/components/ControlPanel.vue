@@ -19,6 +19,7 @@
       />
       <AddText
       v-if="active == 'text'"
+      :markerTextSize="markerTextSize"
       @add-text="$emit('add-text', $event)"
       />
       <Sizer
@@ -50,7 +51,7 @@ export default {
     Sizer,
     Switcher
   },
-  props: [ "mapWidth", "mapHeight", "layerlist", "iconlist", "windowWidth", "windowHeight" ],
+  props: [ "mapWidth", "mapHeight", "layerlist", "iconlist", "windowWidth", "windowHeight", "markerTextSize" ],
   data() {
     return {
       active: 'icons',

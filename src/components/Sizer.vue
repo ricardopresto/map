@@ -24,14 +24,9 @@
 </template>
 
 <script>
-import VueSlider from 'vue-slider-component'
-import 'vue-slider-component/theme/default.css'
 
 export default {
   name: 'Sizer',
-  components: {
-    VueSlider
-  },
   props: ['mapWidth', 'mapHeight', 'windowWidth', 'windowHeight'],
   data() {
     return {
@@ -68,6 +63,6 @@ span{
   display: block;
 }
 #wrapper{
-  padding: 20px 0 0 15px;
+  padding: 20px 0 0 12px;
 }
 </style>
