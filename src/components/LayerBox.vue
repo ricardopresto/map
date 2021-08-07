@@ -1,6 +1,6 @@
 <template>
-  <div id='main'>
-    <Layer 
+  <div id="main">
+    <LayerComponent 
     v-for="layer in layerlist"
     :key="layer.index"
     :layerID="layer.id"
@@ -11,13 +11,16 @@
 </template>
 
 <script>
-import Layer from './Layer.vue'
+import LayerComponent from './LayerComponent.vue'
 
 export default {
+
   name: 'LayerBox',
+
   components: {
-    Layer
+    LayerComponent
   },
+
   props: ['layerlist'],
 }
 </script>

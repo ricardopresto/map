@@ -1,22 +1,20 @@
 <template>
-    <div id='iconholder'
-      @click="$emit('icon-click', image)">
-      <img class="iconImage" :src="iconimage" />
-    </div>
+  <div id="iconholder"
+    @click="$emit('icon-click', image)">
+    <img class="iconImage" :src="iconimage" />
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Icon',
+
+  name: 'IconComponent',
+
   props: ['image'],
+  
   computed: {
     iconimage: function() {
       return require(`../assets/icons/${this.image}`);
-    }
-  },
-  data() {
-    return {
-
     }
   }
 }

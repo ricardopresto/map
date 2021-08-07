@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <div id="switcher">
-      <Switcher 
+      <ControlSelector 
       @change-option="changeOption($event)"
       @capture="$emit('capture')"
       />
@@ -22,7 +22,7 @@
       :markerTextSize="markerTextSize"
       @add-text="$emit('add-text', $event)"
       />
-      <Sizer
+      <MapSizer
       v-if="active == 'size'"
       :mapWidth="mapWidth"
       :mapHeight="mapHeight"
@@ -39,31 +39,32 @@
 import IconBox from './IconBox.vue';
 import LayerBox from './LayerBox.vue';
 import AddText from './AddText.vue';
-import Sizer from './Sizer.vue';
-import Switcher from './Switcher.vue';
+import MapSizer from './MapSizer.vue';
+import ControlSelector from './ControlSelector.vue';
 
 export default {
+
   name: 'ControlPanel',
+
   components: {
     IconBox,
     LayerBox,
     AddText,
-    Sizer,
-    Switcher
+    MapSizer,
+    ControlSelector
   },
-  props: [ "mapWidth", "mapHeight", "layerlist", "iconlist", "windowWidth", "windowHeight", "markerTextSize" ],
+
+  props: ['mapWidth', 'mapHeight', 'layerlist', 'iconlist', 'windowWidth', 'windowHeight', 'markerTextSize'],
+
   data() {
     return {
-      active: 'icons',
-      sizerMounted: false
+      active: 'icons'
     }
   },
+
   methods: {
     changeOption(newOption) {
       this.active = newOption;
-    },
-    sizerHasMounted() {
-      this.sizerMounted = true;
     }
   }
 }

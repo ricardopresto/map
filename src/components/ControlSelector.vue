@@ -20,7 +20,8 @@
 
 <script>
 export default {
-  name: 'Switcher'
+  
+  name: 'ControlSelector'
 }
 </script>
 

@@ -19,19 +19,24 @@
 
 <script>
 export default {
+
   name: 'AddText',
+
   data() {
     return {
       text: '',
       textSize: this.markerTextSize
     }
   },
-  props: [ 'markerTextSize' ],
+
+  props: ['markerTextSize'],
+
   methods: {
     buttonClick() {
       this.$emit('add-text', [this.text, this.textSize]);
     }
   },
+
   computed: {
     textStyle () {
       return {
@@ -40,7 +45,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
@@ -80,7 +84,6 @@ span{
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  
   margin-top: 15px;
   height: 30px;
   width: 160px;
@@ -90,6 +93,5 @@ span{
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
 }
 </style>

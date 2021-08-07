@@ -24,10 +24,12 @@
 </template>
 
 <script>
-
 export default {
-  name: 'Sizer',
+  
+  name: 'MapSizer',
+
   props: ['mapWidth', 'mapHeight', 'windowWidth', 'windowHeight'],
+
   data() {
     return {
       setMapWidth: this.mapWidth,
@@ -36,10 +38,12 @@ export default {
       initialHeight: this.windowHeight
     }
   },
+
   methods: {
     heightChange() {
       this.$emit('height-change', this.setMapHeight);
     },
+
     widthChange() {
       this.$emit('width-change', this.setMapWidth);
     }

@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <div id="modal" v-if="modal">
+    <div id="modal" v-if="showModal">
       <div id="closer" @click="closeModal">
         <span>CLOSE</span>
       </div>
     </div>
     <div id="map" :style="mapStyle" @click="mapClick"></div>
-    
       <ControlPanel 
       @capture="capture"
       @height-change="heightChange"
@@ -34,10 +33,13 @@ import iconlist from './components/iconlist';
 import layerlist from './components/layerlist';
 
 export default {
+
   name: 'App',
+
   components: {
     ControlPanel
   },
+
   data() {
     return {
       access_token: 'pk.eyJ1IjoicmljYXJkb3ByZXN0byIsImEiOiJja3J1bmloMHEwYnY4MnBzNWt6b2x6eHBuIn0.zivT6cbQcLcAFl1Q8GW-QA',
@@ -46,13 +48,22 @@ export default {
       completeLayerList: [],
       iconlist: iconlist,
       layerlist: layerlist,
-      modal: false,
+      showModal: false,
       mapWidth: 0,
       mapHeight: 0,
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight,
       markerTextSize: 14
     };
+  },
+
+  computed: {
+    mapStyle () {
+      return {
+        height: `${this.mapHeight}px`,
+        width: `${this.mapWidth}px`
+      }
+    }
   },
 
   mounted() {
@@ -65,8 +76,8 @@ export default {
     createMap() {
       mapboxgl.accessToken = this.access_token;
       this.map = new mapboxgl.Map({
-        container: "map",
-        style: "mapbox://styles/mapbox/streets-v11",
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
         center: this.center,
         zoom: 8,
         preserveDrawingBuffer: true
@@ -76,6 +87,7 @@ export default {
         this.map.resize();
       })
     },
+
     createMarker(type) {
       let name = `marker${uuidv4()}`;
       let icon = document.createElement('img');
@@ -85,6 +97,7 @@ export default {
       this[name].setLngLat(this.map.getCenter());
       this[name].addTo(this.map);
     },
+
     addTextMarker(textInfo) {
       this.markerTextSize = textInfo[1];
       let name = `marker${uuidv4()}`;
@@ -96,15 +109,18 @@ export default {
       this[name].setLngLat(this.map.getCenter());
       this[name].addTo(this.map);
     },
+
     getIconImage(type) {
       return require(`./assets/icons/${type}`)
     },
+
     mapClick(event) {
       let name = event.target.id;
       if (name.substring(0, 6) == 'marker') {
         this[name].remove();
       }
     },
+
     setVisible(info) {
       for (let item of this.completeLayerList) {
           if (info[1] == false) {
@@ -117,30 +133,26 @@ export default {
           }
       }
     },
+
     capture() {
       let map = document.getElementById('map');
-      this.modal = true;
+      this.showModal = true;
       html2canvas(map).then(function(canvas) {
         let modal = document.getElementById('modal');
         modal.append(canvas);
       });
     },
+
     closeModal() {
-      this.modal = false;
+      this.showModal = false;
     },
+
     heightChange(newHeight) {
       this.mapHeight = newHeight;
     },
+
     widthChange(newWidth) {
       this.mapWidth = newWidth;
-    }
-  },
-  computed: {
-    mapStyle () {
-      return {
-        height: `${this.mapHeight}px`,
-        width: `${this.mapWidth}px`
-      }
     }
   }
 }
@@ -180,6 +192,8 @@ export default {
   top: 0;
   right: 0;
   color: white;
+  font-size: 20pt;
+  font-weight: bold;
   padding: 30px;
   cursor: default;
 }
