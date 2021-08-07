@@ -40,8 +40,9 @@ export default {
   padding: 10px;
   border-radius: 6px;
   cursor: default;
+  transition: 0.2s;
 }
 #layer:hover{
-  box-shadow: inset 0 0 5px lightgrey;
+  box-shadow: inset 0 0 5px white;
 }
 </style>

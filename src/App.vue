@@ -163,7 +163,7 @@ export default {
   margin: 0;
   Padding: 0;
   box-sizing: border-box;
-  --switcher-bg: rgb(140, 176, 199);
+  --switcher-bg: rgba(140, 176, 199, 0.9);
   font-family: Arial, Helvetica, sans-serif;
 }
 #app{

@@ -72,9 +72,10 @@ button{
   background-color: var(--switcher-bg);
   border-radius: 6px;
   margin-top: 10px;
+  transition: 0.2s;
 }
 button:hover{
-  box-shadow: inset 0 0 5px lightgrey;
+  box-shadow: inset 0 0 5px white;
 }
 span{
   padding-right: 10px;
