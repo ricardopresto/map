@@ -27,7 +27,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 200px;
-  height: 200px;
+  height: 160px;
   background-color: var(--switcher-bg);
 }
 </style>

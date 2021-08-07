@@ -1,34 +1,52 @@
 <template>
   <div id="main">
-    <input type="range" min="20" :max="initialWidth" v-model="setmapWidth" class="slider" id="width" @change="widthChange" >
-    <span>Width: {{setmapWidth}}</span>
-    <input type="range" min="20" :max="initialHeight" v-model="setMapHeight" class="slider" id="height" @change="heightChange" >
-    <span>Height: {{setMapHeight}}</span>
+    <div id="wrapper">
+      <vue-slider
+      :width=170
+      :min=100
+      :tooltip="'none'"
+      :max="initialWidth" 
+      v-model="setMapWidth" 
+      @change="widthChange">
+      </vue-slider>
+      <span>Width: {{setMapWidth}}</span>
+      <vue-slider 
+      :width=170
+      :min=100
+      :tooltip="'none'" 
+      :max="initialHeight" 
+      v-model="setMapHeight" 
+      @change="heightChange">
+      </vue-slider>
+      <span>Height: {{setMapHeight}}</span>
+    </div>
   </div>
 </template>
 
 <script>
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
+
 export default {
   name: 'Sizer',
-  props: ['mapWidth', 'mapHeight'],
+  components: {
+    VueSlider
+  },
+  props: ['mapWidth', 'mapHeight', 'windowWidth', 'windowHeight'],
   data() {
     return {
-      setmapWidth: this.mapWidth,
+      setMapWidth: this.mapWidth,
       setMapHeight: this.mapHeight,
-      initialWidth: 0,
-      initialHeight: 0
+      initialWidth: this.windowWidth,
+      initialHeight: this.windowHeight
     }
-  },
-  mounted() {
-    this.initialWidth = this.mapWidth;
-    this.initialHeight = this.mapHeight;
   },
   methods: {
     heightChange() {
       this.$emit('height-change', this.setMapHeight);
     },
     widthChange() {
-      this.$emit('width-change', this.setmapWidth);
+      this.$emit('width-change', this.setMapWidth);
     }
   }
 }
@@ -37,22 +55,19 @@ export default {
 <style scoped>
 #main{
   width: 200px;
-  height: 200px;
+  height: 160px;
   display: flex;
   flex-direction: column;
   background-color: var(--switcher-bg);
 }
-.slider{
-  width: 180px;
-  margin: 10px;
-  appearance: none;
-  border-radius: 8px;
-}
 span{
   color: white;
   font-size: 11pt;
-  padding-left: 20px;
+  margin-bottom: 10px;
   cursor: default;
-
+  display: block;
+}
+#wrapper{
+  padding: 20px 0 0 15px;
 }
 </style>

@@ -25,6 +25,8 @@
       v-if="active == 'size'"
       :mapWidth="mapWidth"
       :mapHeight="mapHeight"
+      :windowWidth="windowWidth"
+      :windowHeight="windowHeight"
       @height-change="$emit('height-change', $event)"
       @width-change="$emit('width-change', $event)"
        />
@@ -48,15 +50,19 @@ export default {
     Sizer,
     Switcher
   },
-  props: [ "mapWidth", "mapHeight", "layerlist", "iconlist" ],
+  props: [ "mapWidth", "mapHeight", "layerlist", "iconlist", "windowWidth", "windowHeight" ],
   data() {
     return {
-      active: 'icons'
+      active: 'icons',
+      sizerMounted: false
     }
   },
   methods: {
     changeOption(newOption) {
       this.active = newOption;
+    },
+    sizerHasMounted() {
+      this.sizerMounted = true;
     }
   }
 }

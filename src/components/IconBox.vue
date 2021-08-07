@@ -29,7 +29,7 @@ export default {
 <style scoped>
 #main{
     width: 200px;
-    height: 200px;
+    height: 160px;
     display: flex;
     flex-flow: row wrap;
     background-color: var(--switcher-bg);

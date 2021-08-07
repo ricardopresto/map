@@ -18,6 +18,8 @@
       :mapHeight="mapHeight"
       :layerlist="layerlist"
       :iconlist="iconlist"
+      :windowWidth="windowWidth"
+      :windowHeight="windowHeight"
       /> 
   </div>
 </template>
@@ -45,7 +47,9 @@ export default {
       layerlist: layerlist,
       modal: false,
       mapWidth: 0,
-      mapHeight: 0
+      mapHeight: 0,
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
     };
   },
 
@@ -53,7 +57,6 @@ export default {
     this.createMap();
     this.mapWidth = window.innerWidth;
     this.mapHeight = window.innerHeight;
-    console.log(uuidv4());
   },
 
   methods: {

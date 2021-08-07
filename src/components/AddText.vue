@@ -26,7 +26,7 @@ export default {
 <style scoped>
 #main{
   width: 200px;
-  height: 150px;
+  height: 160px;
   background-color: var(--switcher-bg);
   display: flex;
   flex-direction: column;
