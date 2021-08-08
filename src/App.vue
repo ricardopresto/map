@@ -5,8 +5,8 @@
         <span>CLOSE</span>
       </div>
     </div>
-    <div id="map" :style="mapStyle" @click="removeMarker" @dragover.prevent
-      @dragenter.prevent @drop="dropMarker"></div>
+    <div id="map" :style="mapStyle" @contextmenu.prevent="removeMarker" @dragover.prevent
+      @dragenter.prevent @drop.prevent="dropMarker"></div>
       <ControlPanel 
       @capture="capture"
       @height-change="heightChange"
@@ -129,6 +129,7 @@ export default {
       textMarker.innerHTML = textInfo[0];
       textMarker.style.fontSize = `${this.markerTextSize}pt`
       textMarker.id = name;
+      textMarker.onclick = (e) => {e.preventDefault()};
       this[name] = new mapboxgl.Marker({element: textMarker, draggable: true});
       this[name].setLngLat(this.adjustCentre());
       this[name].addTo(this.map);
