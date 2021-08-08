@@ -1,7 +1,7 @@
 const iconlist = [
   {
     index: '0',
-    image: 'star.png'
+    image: 'naval.png'
   },
   {
     index: '1',
@@ -9,7 +9,7 @@ const iconlist = [
   },
   {
     index: '2',
-    image: 'asterisk.png'
+    image: 'festival.png'
   },
   {
     index: '3',
