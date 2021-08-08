@@ -100,16 +100,15 @@ export default {
       icon.src = this.getIconImage(type);
       icon.id = name;
       this[name] = new mapboxgl.Marker({element: icon, draggable: true});
-      let locationLngLat = this.map.getCenter();
-      let locationXY = this.map.project(locationLngLat);
-      locationXY = {x: locationXY.x - this.mapWidthOffset, y: locationXY.y - this.mapHeightOffset};
-      locationLngLat = this.map.unproject(locationXY);
-      this[name].setLngLat(locationLngLat);
+      this[name].setLngLat(this.adjustCentre());
       this[name].addTo(this.map);
     },
 
-    updateDrag(type) {
-      this.draggedIconType = type;
+    adjustCentre() {
+      let locationLngLat = this.map.getCenter();
+      let locationXY = this.map.project(locationLngLat);
+      locationXY = {x: locationXY.x - this.mapWidthOffset, y: locationXY.y - this.mapHeightOffset};
+      return this.map.unproject(locationXY);
     },
 
     dropMarker(e) {
@@ -131,12 +130,16 @@ export default {
       textMarker.style.fontSize = `${this.markerTextSize}pt`
       textMarker.id = name;
       this[name] = new mapboxgl.Marker({element: textMarker, draggable: true});
-      this[name].setLngLat(this.map.getCenter());
+      this[name].setLngLat(this.adjustCentre());
       this[name].addTo(this.map);
     },
 
     getIconImage(type) {
       return require(`./assets/icons/${type}`)
+    },
+
+    updateDrag(type) {
+      this.draggedIconType = type;
     },
 
     removeMarker(e) {
