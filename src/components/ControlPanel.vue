@@ -11,6 +11,7 @@
       v-if="active == 'icons'"
       :iconlist="iconlist"
       @icon-click="$emit('icon-click', $event)"
+      @icon-dragged="$emit('icon-dragged', $event)"
       />
       <LayerBox
       v-if="active == 'layers'"

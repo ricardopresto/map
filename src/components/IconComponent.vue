@@ -1,7 +1,9 @@
 <template>
   <div id="iconholder"
     @click="$emit('icon-click', image)">
-    <img class="iconImage" :src="iconimage" />
+    <img class="iconImage" :src="iconimage" 
+    draggable 
+    @dragstart="$emit('icon-dragged', image)"/>
   </div>
 </template>
 
@@ -16,7 +18,7 @@ export default {
     iconimage: function() {
       return require(`../assets/icons/${this.image}`);
     }
-  }
+  }  
 }
 </script>
 

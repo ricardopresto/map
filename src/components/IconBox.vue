@@ -4,7 +4,8 @@
     v-for="icon in iconlist" 
     :key="icon.index" 
     :image="icon.image" 
-    @icon-click="$emit('icon-click', $event)"/>
+    @icon-click="$emit('icon-click', $event)"
+    @icon-dragged="$emit('icon-dragged', $event)"/>
   </div>    
 </template>
 

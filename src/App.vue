@@ -5,13 +5,15 @@
         <span>CLOSE</span>
       </div>
     </div>
-    <div id="map" :style="mapStyle" @click="mapClick"></div>
+    <div id="map" :style="mapStyle" @click="removeMarker" @dragover.prevent
+      @dragenter.prevent @drop="dropMarker"></div>
       <ControlPanel 
       @capture="capture"
       @height-change="heightChange"
       @width-change="widthChange"
       @set-visible="setVisible($event)"
-      @icon-click="createMarker($event)"
+      @icon-click="clickMarker($event)"
+      @icon-dragged="updateDrag"
       @add-text="addTextMarker($event)"
       :mapWidth="mapWidth"
       :mapHeight="mapHeight"
@@ -53,7 +55,8 @@ export default {
       mapHeight: 0,
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight,
-      markerTextSize: 14
+      markerTextSize: 14,
+      draggedIconType: ''
     };
   },
 
@@ -88,13 +91,28 @@ export default {
       })
     },
 
-    createMarker(type) {
+    clickMarker(type) {
       let name = `marker${uuidv4()}`;
       let icon = document.createElement('img');
       icon.src = this.getIconImage(type);
       icon.id = name;
       this[name] = new mapboxgl.Marker({element: icon, draggable: true});
       this[name].setLngLat(this.map.getCenter());
+      this[name].addTo(this.map);
+    },
+
+    updateDrag(type) {
+      this.draggedIconType = type;
+    },
+
+    dropMarker(e) {
+      let name = `marker${uuidv4()}`;
+      let icon = document.createElement('img');
+      let dropLocation = {x: e.clientX, y: e.clientY};
+      icon.src = this.getIconImage(this.draggedIconType);
+      icon.id = name;
+      this[name] = new mapboxgl.Marker({element: icon, draggable: true});
+      this[name].setLngLat(this.map.unproject(dropLocation));
       this[name].addTo(this.map);
     },
 
@@ -114,8 +132,8 @@ export default {
       return require(`./assets/icons/${type}`)
     },
 
-    mapClick(event) {
-      let name = event.target.id;
+    removeMarker(e) {
+      let name = e.target.id;
       if (name.substring(0, 6) == 'marker') {
         this[name].remove();
       }
