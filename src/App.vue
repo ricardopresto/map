@@ -56,7 +56,10 @@ export default {
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight,
       markerTextSize: 14,
-      draggedIconType: ''
+      draggedIconType: '',
+      mapWidthOffset: 0,
+      mapHeightOffset: 0
+
     };
   },
 
@@ -97,7 +100,11 @@ export default {
       icon.src = this.getIconImage(type);
       icon.id = name;
       this[name] = new mapboxgl.Marker({element: icon, draggable: true});
-      this[name].setLngLat(this.map.getCenter());
+      let locationLngLat = this.map.getCenter();
+      let locationXY = this.map.project(locationLngLat);
+      locationXY = {x: locationXY.x - this.mapWidthOffset, y: locationXY.y - this.mapHeightOffset};
+      locationLngLat = this.map.unproject(locationXY);
+      this[name].setLngLat(locationLngLat);
       this[name].addTo(this.map);
     },
 
@@ -108,7 +115,7 @@ export default {
     dropMarker(e) {
       let name = `marker${uuidv4()}`;
       let icon = document.createElement('img');
-      let dropLocation = {x: e.clientX, y: e.clientY};
+      let dropLocation = {x: e.clientX - this.mapWidthOffset, y: e.clientY - this.mapHeightOffset};
       icon.src = this.getIconImage(this.draggedIconType);
       icon.id = name;
       this[name] = new mapboxgl.Marker({element: icon, draggable: true});
@@ -167,10 +174,12 @@ export default {
 
     heightChange(newHeight) {
       this.mapHeight = newHeight;
+      this.mapHeightOffset = document.getElementById('map').offsetTop;
     },
 
     widthChange(newWidth) {
       this.mapWidth = newWidth;
+      this.mapWidthOffset = document.getElementById('map').offsetLeft;
     }
   }
 }
