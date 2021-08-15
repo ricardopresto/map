@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <textarea cols="20" rows="2" v-model="text"></textarea>
-    <button @click="buttonClick ">Add Text</button>
+    <button @click="buttonClick ">Add Texte</button>
     <div id="wrapper">
       <div id="spanwrapper">
         <span :style="textStyle">A</span> 
