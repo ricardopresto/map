@@ -1,19 +1,19 @@
 <template>
   <div id="main">
     <div id="icons" class="option" 
-    @click="setIcons" v-bind:class="{ highlighted : iconsActive }">
+    @click="setActive('icons')" v-bind:class="{ highlighted : iconsActive }">
       <i class="fas fa-map-marker-alt icon"></i>
     </div>
     <div id="text" class="option" 
-    @click="setText" v-bind:class="{ highlighted : textActive }">
+    @click="setActive('text')" v-bind:class="{ highlighted : textActive }">
       <i class="fas fa-font icon"></i>
     </div>
     <div id="layers" class="option" 
-    @click="setLayers" v-bind:class="{ highlighted : layersActive }">
+    @click="setActive('layers')" v-bind:class="{ highlighted : layersActive }">
       <i class="fas fa-layer-group icon"></i>
     </div>
     <div id="size" class="option" 
-    @click="setSize" v-bind:class="{ highlighted : sizeActive }">
+    @click="setActive('size')" v-bind:class="{ highlighted : sizeActive }">
       <i class="fas fa-crop-alt icon"></i>
     </div>
     <div id="render" class="option" @click="$emit('capture')">
@@ -32,42 +32,24 @@ export default {
       iconsActive: true,
       textActive: false,
       layersActive: false,
-      sizeActive: false
+      sizeActive: false,
+      options: [
+        'icons',
+        'text',
+        'layers',
+        'size'
+      ]
     }
   },
 
   methods: {
-    setIcons() {
-      this.$emit('change-option', 'icons');
-      this.iconsActive = true;
-      this.textActive = false;
-      this.layersActive = false;
-      this.sizeActive = false;
-    },
-
-    setText() {
-        this.$emit('change-option', 'text');
-        this.iconsActive = false;
-        this.textActive = true;
-        this.layersActive = false;
-        this.sizeActive = false;
-      },
-
-    setLayers() {
-      this.$emit('change-option', 'layers');
-      this.iconsActive = false;
-      this.textActive = false;
-      this.layersActive = true;
-      this.sizeActive = false;
-    },
-    
-    setSize() {
-      this.$emit('change-option', 'size');
-      this.iconsActive = false;
-      this.textActive = false;
-      this.layersActive = false;
-      this.sizeActive = true;
-    },
+    setActive(option) {
+      this.$emit('change-option', option);
+      this.options.forEach(item => {
+        this[`${item}Active`] = false;
+      });
+      this[`${option}Active`] = true;
+    }
   }
 }
 </script>
